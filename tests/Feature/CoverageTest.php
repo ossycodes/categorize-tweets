@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CoverageTest extends TestCase
@@ -18,7 +16,7 @@ class CoverageTest extends TestCase
         $response->assertStatus(200);
 
         $response->assertJson([
-            'status' => 'ok'
+            'status' => 'ok',
         ]);
     }
 }
