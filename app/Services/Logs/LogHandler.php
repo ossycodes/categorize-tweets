@@ -4,6 +4,7 @@ namespace App\Services\Logs;
 
 use App\Models\Log;
 use Monolog\Logger;
+use Twilio\Rest\Client;
 use App\Events\Logs\LogMonologEvent;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Handler\AbstractProcessingHandler;
@@ -18,11 +19,18 @@ class LogHandler extends AbstractProcessingHandler
     protected function write(array $record) :void
     {
         $whatsappMessage = "Hey dear you have a new log message, details are: IP: *ip*,  log message: log_message, user:id *user_id*";
+       
         foreach ($record['formatted'] as $key => $value) {
             $whatsappMessage = str_replace($key, $value, $whatsappMessage);
         }
 
-        dd($whatsappMessage);
+        $recipient = "+2349023802591";
+        $twilio_whatsapp_number = getenv('TWILIO_WHATSAPP_NUMBER');
+        $account_sid = getenv("TWILIO_SID");
+        $auth_token = getenv("TWILIO_AUTH_TOKEN");
+
+        $client = new Client($account_sid, $auth_token);
+        $client->messages->create($recipient, array('from' => $twilio_whatsapp_number, 'body' => $whatsappMessage));
 
         // Queue implementation
         // event(new LogMonologEvent($record));
