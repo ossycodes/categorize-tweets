@@ -22,8 +22,7 @@ class LogFormatter extends NormalizerFormatter
     }
 
     /**
-     * 
-     * @param array $record
+     *
      * @return array
      */
     protected function getDocument(array $record)
