@@ -2,12 +2,11 @@
 
 namespace App\Services\Logs;
 
-use App\Models\Log;
-use Monolog\Logger;
-use Twilio\Rest\Client;
 use App\Events\Logs\LogMonologEvent;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Handler\AbstractProcessingHandler;
+use Monolog\Logger;
+use Twilio\Rest\Client;
 
 class LogHandler extends AbstractProcessingHandler
 {
@@ -30,7 +29,7 @@ class LogHandler extends AbstractProcessingHandler
         $auth_token = getenv("TWILIO_AUTH_TOKEN");
 
         $client = new Client($account_sid, $auth_token);
-        $client->messages->create($recipient, array('from' => $twilio_whatsapp_number, 'body' => $whatsappMessage));
+        $client->messages->create($recipient, ['from' => $twilio_whatsapp_number, 'body' => $whatsappMessage]);
 
         // Queue implementation
         // event(new LogMonologEvent($record));
