@@ -2,11 +2,10 @@
 
 namespace App\Services\Logs;
 
-use App\Models\Log;
-use Monolog\Logger;
 use App\Events\Logs\LogMonologEvent;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Handler\AbstractProcessingHandler;
+use Monolog\Logger;
 
 class LogHandler extends AbstractProcessingHandler
 {
