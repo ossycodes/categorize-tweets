@@ -10,6 +10,7 @@ class LogProcessor
             'user_id' => auth()->user() ? auth()->user()->id : 'no user',
             'ip' => request()->server('REMOTE_ADDR'),
         ];
+
         return $record;
     }
 }
