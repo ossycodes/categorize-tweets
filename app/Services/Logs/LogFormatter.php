@@ -22,12 +22,8 @@ class LogFormatter extends NormalizerFormatter
     }
 
     /**
-<<<<<<< HEAD
      * 
      * @param array $record
-=======
-     * Convert a log message into an MariaDB Log entity
->>>>>>> 92d9305f1e14810e4177fc3bc7a5db94fd16f492
      * @return array
      */
     protected function getDocument(array $record)
